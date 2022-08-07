@@ -8,9 +8,9 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   static final routes = {
-    '/': (context) => const ListScreen(title: 'Wasteagram'),
-    'newPost': (context) => const NewPostScreen(),
-    'details': (context) => const DetailScreen()
+    ListScreen.routeName: (context) => const ListScreen(title: 'Wasteagram'),
+    NewPostScreen.routeName: (context) => const NewPostScreen(),
+    DetailScreen.routeName: (context) => const DetailScreen()
   };
 
   // This widget is the root of your application.
