@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:wasteagram/widgets/new_post_form.dart';
+import 'package:location/location.dart';
 
 class NewPostWidget extends StatefulWidget {
   final File image;
@@ -11,6 +12,15 @@ class NewPostWidget extends StatefulWidget {
 }
 
 class _NewPostWidgetState extends State<NewPostWidget> {
+  LocationData? locationData;
+  var locationService = Location();
+
+  @override
+  void initState(){
+    super.initState();
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.image == null){
@@ -18,16 +28,18 @@ class _NewPostWidgetState extends State<NewPostWidget> {
     }
     else{
       return Center(
-        child: ListView(
+        child: SingleChildScrollView(child: 
+        Column(
           children: [
+            // Display image
             SizedBox(height: 400, width: 400, child: Image.file(widget.image),),
+            // Spacer
             const SizedBox(height: 40,),
-            // Form here
+            // Display Form and Button
             QuantityForm()
-
-            // Button Here
             ]
-        ),
+          ),
+        ) 
       );
     }
   }

@@ -43,11 +43,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
         centerTitle: true,),
       body: Center(child: NewPostWidget(image: receivedValue as File),)
       // To-Do:       
-      // Display Photo of wasted food
-      // Add 'Number of Items' input field to enter number of wasted items
-        // Should display a Numeric Keypad
-        // If nothing is entered and upload is pressed, error should appear
-      // Add a large 'upload' button for saving the post
+   
         // Tapping this should cause List Screen to appear with latest post at top of list
 
     );

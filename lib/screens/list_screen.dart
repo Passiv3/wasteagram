@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:wasteagram/widgets/camera_button.dart';
+import 'package:wasteagram/exports.dart';
 
 class ListScreen extends StatefulWidget {
   const ListScreen({Key? key, required this.title}) : super(key: key);
@@ -19,10 +20,11 @@ class _ListScreenState extends State<ListScreen> {
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: Column(children: [Placeholder(), CameraButton()],)
+      body: Column(
+          children: [DatabaseContent(), CameraButton()],) );
       //To-Do create a widget to display list Tiles
       // List-Tiles - date, number representing total number of wasted items recorded
       // Tapping the list tile should cause the detail screen to appear
-    );
+
   }
 }
