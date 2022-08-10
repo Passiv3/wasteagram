@@ -23,14 +23,17 @@ class _DatabaseContentState extends State<DatabaseContent> {
             itemBuilder: (context, index){
               var post = snapshot.data!.docs[index];
               return ListTile(
-                title: Text(DateFormat.yMMMEd().format(post['date'].toDate()))
+                onTap:() => Navigator.of(context).pushNamed('details'),
+                title: Text(DateFormat.yMMMEd().format(post['date'].toDate(),
+                )
+                )
               );
             },
             )
           )
         );
         } else{
-          return Center(child: CircularProgressIndicator(),);
+          return const Center(child: CircularProgressIndicator(),);
         }
       }
     );

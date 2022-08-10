@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:wasteagram/exports.dart';
+import 'package:wasteagram/models/post_model.dart';
 
 class NewPostScreen extends StatefulWidget {
   const NewPostScreen({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class NewPostScreen extends StatefulWidget {
 
 class _NewPostScreenState extends State<NewPostScreen> {
   File? image;
+  FoodWastePost? currentPost;
   final picker = ImagePicker();
 
   void getImage() async{
@@ -21,6 +23,9 @@ class _NewPostScreenState extends State<NewPostScreen> {
       return;
     }else{
       image = File(pickedFile.path);
+      // Instantiate a model of currentPost
+      currentPost = FoodWastePost(image = image as File);
+      currentPost?.image = image!;
     }
     setState(() {});
   }
@@ -33,19 +38,14 @@ class _NewPostScreenState extends State<NewPostScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    final receivedValue = image;
+    final postModel = currentPost;
 
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: (() => Navigator.pop(context)),),
         title: const Text('New Post'),
         centerTitle: true,),
-      body: Center(child: NewPostWidget(image: receivedValue as File),)
-      // To-Do:       
-   
-        // Tapping this should cause List Screen to appear with latest post at top of list
-
+      body: Center(child: NewPostWidget(currentPost: postModel as FoodWastePost,),)
     );
   }
 }

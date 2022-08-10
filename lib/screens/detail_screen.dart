@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class DetailScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Wasteagram'),
       centerTitle: true,),
       //To-do - show post's date, photo, number of wasted items, latitude and longitude recorded
+      
     );
   }
 }

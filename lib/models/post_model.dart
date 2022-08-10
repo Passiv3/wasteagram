@@ -1,14 +1,21 @@
+import 'dart:io';
 class FoodWastePost {
-  final String imageURL;
-  final DateTime time;
-  final String longitude;
-  final String latitude;
-  final int quantity;
+  File image;
+  final DateTime time = DateTime.now();
+  String longitude = '0';
+  String latitude = '0';
+  int quantity = 0;
+  String imageURL = 'no Image';
 
+  FoodWastePost(this.image);
 
-  FoodWastePost(this.imageURL, this.time, this.latitude, this.longitude, this.quantity);
-
-  List returnAll(){
-    return [imageURL, time, latitude, longitude, quantity];
+  Map returnAll(){
+    return {
+      'date': time,
+      'latitude': latitude,
+      'longitude': longitude,
+      'quantity': quantity,
+      'imageURL': imageURL,
+    };
   }
 }

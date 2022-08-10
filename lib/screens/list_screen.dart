@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:wasteagram/widgets/camera_button.dart';
 import 'package:wasteagram/exports.dart';
 
