@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:wasteagram/exports.dart';
 
 class DatabaseContent extends StatefulWidget {
   const DatabaseContent({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _DatabaseContentState extends State<DatabaseContent> {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('posts').snapshots(),
       builder: (context, snapshot){
-        if (snapshot.hasData){
+        if (snapshot.hasData && snapshot.data!.docs != null && snapshot.data!.docs.length>0){
           return Expanded(
             child: SizedBox(
             child: ListView.builder(
@@ -23,7 +24,7 @@ class _DatabaseContentState extends State<DatabaseContent> {
             itemBuilder: (context, index){
               var post = snapshot.data!.docs[index];
               return ListTile(
-                onTap:() => Navigator.of(context).pushNamed('details'),
+                onTap:() => Navigator.of(context).pushNamed(DetailScreen.routeName, arguments: post),
                 title: Text(DateFormat.yMMMEd().format(post['date'].toDate(),
                 )
                 )

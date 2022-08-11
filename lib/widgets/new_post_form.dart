@@ -16,11 +16,11 @@ class _SubmitFormState extends State<SubmitForm> {
 
   Future uploadToServer() async {
     FirebaseStorage storage = FirebaseStorage.instance;
-    Reference ref = storage.ref().child("image-" + DateTime.now().toString()+'.jpg');
+    Reference ref = storage.ref().child("image-${DateTime.now().toString()}.jpg");
     UploadTask uploadTask = ref.putFile(widget.currentPost.image);
     await uploadTask;
     final url = await ref.getDownloadURL();
-    widget.currentPost.imageURL = ref.toString();
+    widget.currentPost.imageURL = url.toString();
   }
   @override
   void initState() {
@@ -41,7 +41,7 @@ class _SubmitFormState extends State<SubmitForm> {
             )
           );
         } else{
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
       },
     );
@@ -54,7 +54,7 @@ class _SubmitFormState extends State<SubmitForm> {
         onSaved: (value){
           widget.currentPost.quantity = int.parse(value!);
         },
-        style: TextStyle(fontSize: 32),
+        style: const TextStyle(fontSize: 32),
         keyboardType: TextInputType.number,
         validator: (value) {
           if(value == null || value.isEmpty){
@@ -63,7 +63,7 @@ class _SubmitFormState extends State<SubmitForm> {
           return null;
         },
     )
-    );;
+    );
   }
 
   ElevatedButton createButton(){
