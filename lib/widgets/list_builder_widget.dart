@@ -19,19 +19,24 @@ class _DatabaseContentState extends State<DatabaseContent> {
         if (snapshot.hasData && snapshot.data!.docs != null && snapshot.data!.docs.length>0){
           return Expanded(
             child: SizedBox(
-            child: ListView.builder(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index){
-              var post = snapshot.data!.docs[index];
-              return ListTile(
-                onTap:() => Navigator.of(context).pushNamed(DetailScreen.routeName, arguments: post),
-                title: Text(DateFormat.yMMMEd().format(post['date'].toDate(),
+            child: Semantics(
+              button: true,
+              enabled: true,
+              label: 'Button displaying Date of post',
+              onTapHint: 'Tap to expand details',
+              child: ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index){
+                  var post = snapshot.data!.docs[index];
+                  return ListTile(
+                    onTap:() => Navigator.of(context).pushNamed(DetailScreen.routeName, arguments: post),
+                    title: Text(DateFormat.yMMMEd().format(post['date'].toDate(),)),
+                    trailing: Text(post['quantity'].toString())
+                  );
+                },
                 )
-                )
-              );
-            },
+              )
             )
-          )
         );
         } else{
           return const Center(child: CircularProgressIndicator(),);

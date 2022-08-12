@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wasteagram/models/post_model.dart';
@@ -7,8 +8,9 @@ import 'package:location/location.dart';
 // Gets an image
 class NewPostWidget extends StatefulWidget {
   final FoodWastePost currentPost;
+  final File image;
 
-  const NewPostWidget({Key? key, required this.currentPost}) : super(key: key);
+  const NewPostWidget({Key? key, required this.currentPost, required this.image}) : super(key: key);
 
   @override
   State<NewPostWidget> createState() => _NewPostWidgetState();
@@ -70,11 +72,11 @@ class _NewPostWidgetState extends State<NewPostWidget> {
         Column(
           children: [
             // Display image
-            SizedBox(height: 400, width: 400, child: Image.file(widget.currentPost.image),),
+            SizedBox(height: 400, width: 400, child: Image.file(widget.image),),
             // Spacer
             const SizedBox(height: 40,),
             // Display Form and Button
-            SubmitForm(currentPost: widget.currentPost,)
+            SubmitForm(currentPost: widget.currentPost, image: widget.image)
             ]
           ),
         ) 

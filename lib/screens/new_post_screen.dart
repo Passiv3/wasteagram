@@ -24,8 +24,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
     }else{
       image = File(pickedFile.path);
       // Instantiate a model of currentPost
-      currentPost = FoodWastePost(image = image as File);
-      currentPost?.image = image!;
+      currentPost = FoodWastePost();
     }
     setState(() {});
   }
@@ -38,6 +37,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final picture = image;
     final postModel = currentPost;
 
     return Scaffold(
@@ -45,7 +45,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
         leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: (() => Navigator.pop(context)),),
         title: const Text('New Post'),
         centerTitle: true,),
-      body: Center(child: NewPostWidget(currentPost: postModel as FoodWastePost,),)
+      body: Center(child: NewPostWidget(currentPost: postModel as FoodWastePost, image: picture as File),)
     );
   }
 }

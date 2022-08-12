@@ -13,7 +13,13 @@ class _CameraButtonState extends State<CameraButton> {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(onPressed: buttonPress, child: const Icon(Icons.camera_alt),);
+    return Semantics(
+      button: true,
+      label: 'Button with Camera icon',
+      onTapHint: 'Directs you to upload an image',
+      child: FloatingActionButton(onPressed: buttonPress, child: const Icon(Icons.camera_alt),
+      )
+    );
   }
 
   void buttonPress(){

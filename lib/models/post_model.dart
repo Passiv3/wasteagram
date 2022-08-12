@@ -1,15 +1,19 @@
-import 'dart:io';
 class FoodWastePost {
-  File image;
-  final DateTime time = DateTime.now();
+  DateTime time = DateTime.now();
   String longitude = '0';
   String latitude = '0';
   int quantity = 0;
   String imageURL = 'no Image';
 
-  FoodWastePost(this.image);
+  fromMap(Map someMap){
+    time = someMap['date'];
+    longitude = someMap['longitude'];
+    latitude = someMap['latitude'];
+    quantity = someMap['quantity'];
+    imageURL = someMap['imageURL'];
+  }
 
-  Map returnAll(){
+  Map<String, dynamic> returnAll(){
     return {
       'date': time,
       'latitude': latitude,
